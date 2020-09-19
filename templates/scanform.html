@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+ {% block title %} Scan {% endblock %}	
+{% block nav %}
+
+                      <!-- Menu--> 
+  <header id="header">
+  
+  <nav class="links" style="--items: 4;">
+    <label class="logo" onclick="window.location.href='home'">    
+      <a href= "{% url 'home'%}">URL Scanner </a>
+    </label>
+    <a href="#desc">About</a>
+    <a href="#contact">Contact Us</a>
+    <a href="{%url 'view'%}">View History</a>
+    
+
+
+</header>
+</div>
+<div class="page">
+  <nav class="menu">
+    <ul class="menu__list">
+      <li class="menu__group"><a href="{%url 'scanform'%}" class="menu__link">Scan Form parameter</a></li>
+      <li class="menu__group"><a href="{%url 'scanurl'%}" class="menu__link"> Scan URL </a></li>
+    </ul>
+  </nav>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="scan">
+
+	<h1>SQL Injection Scanner</h1>
+	</br></br>
+	</br></br>
+
+
+	<form action="" method="POST"> {% csrf_token %}
+      {{form}}</br></br></br>
+      <button  type="submit" id="submitbutton">SCAN Form</button>
+</br></br>
+
+    </form>
+
+</div>
+
+
+                <!--http header-->
+<div id="outcome">
+      {% if httpheader %}
+      <p style="color:#FFFF; font-size: 30px; text-align:center; font-weight: bold;
+"> <strong>HTTP HEADER :</strong></p>
+      <ul class="list-unstyled list-group" style="margin-right:10%;">
+        {% for key,values in head.items %}
+        <li class="list-group-item" style="color:#FFFF; font-size: 20px; margin-right:10%;">
+          <span class="title" style="color:#FFFF; font-size: 20px; margin-right:10%;"> {{key}} :</span></br> {{values}}
+        </li>
+        {% endfor %}
+      </ul>
+      </br></br></br>
+      {% endif %}
+</div>
+
+
+
+
+
+<!--form parameter-->
+
+<div id="parameter">
+      {% if notvulnerable %}
+      <p style="color:#a3a4a8; font-size: 30px; font-weight:bold;"><strong>RESULT :</strong>
+      {{link}}{{getresult}}</p>
+
+      {% endif %}
+
+      {% if vulnerable %}
+      <span style="color:#FFF; font-size: 30px;"><strong>RESULT : </strong></span>
+      <span style="color: #750b09;font-size: 30px; text-align:center; font-weight: bold;">{{link}}</span>
+      <span style="color:#750b09; font-size: 20px; text-align:center;font-weight: bold;">{{getresult}}</span></br></br></br>
+      <p style="text-align: center; color: #FFF;font-size: 30px; font-weight: bold;
+"><strong>Vulnerability Description</strong></p></br></br>
+      <div class="table-responsive">
+        <table class="table" style="color:#FFF;">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Description</th>
+              <th>Suggested Remediation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Input Validation</th>
+              <td>Even though an id will always be a number, the example above is not validating user input at all.</p>
+                <p>While validating user input is not a direct solution to SQL injection, it helps us control malicious
+                  user input into the database.
+              </td>
+              <td>Before even processing the SQL query, validate user input.</p>
+                <p>In this case, we need to check that the input is a number.
+              </td>
+            </tr>
+            <tr>
+              <th>Code allows for SQL injection</th>
+              <td>The example above is accepting user input (in this case, from a GET parameter), and including it
+                directly in the SQL statement.</p>
+                <p>This allows an attacker to inject SQL into the query, therefore tricking the application into
+                  sending a malformed query to the database.
+              </td>
+              <td>Use parameterized queries when dealing with SQL queries that contains user input.<p>A parameterized
+                  query allows the database to understand which parts of the SQL query should be considered as user
+                  input, therefore solving SQL injection.</li>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+    </br></br></br>
+
+{% endblock %}

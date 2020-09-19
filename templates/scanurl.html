@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+ {% block title %} Scan {% endblock %}	
+
+
+{% block nav %}
+
+                      <!-- Menu--> 
+  <header id="header">
+  
+  <nav class="links" style="--items: 4;">
+    <label class="logo" onclick="window.location.href='home'">    
+      <a href= "{% url 'home'%}">URL Scanner </a>
+    </label>
+    <a href="#desc">About</a>
+    <a href="#contact">Contact Us</a>
+    <a href="{%url 'view'%}">View History</a>
+
+    
+</header>
+</div>
+<div class="page">
+  <nav class="menu">
+    <ul class="menu__list">
+      <li class="menu__group"><a href="{%url 'scanform'%}" class="menu__link">Scan Form parameter</a></li>
+      <li class="menu__group"><a href="{%url 'scanurl'%}" class="menu__link"> Scan URL </a></li>
+    </ul>
+  </nav>
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="scan">
+
+	<h1> SQL Injection Scanner</h1>
+	</br></br>
+	</br></br>
+
+    <form action="" method="POST"> {% csrf_token %}
+      {{form}}
+      </br></br></br>
+      <button  type="submit" id="submitbutton">SCAN URL</button>
+
+    </form>
+
+
+</div>
+
+
+<!--http header-->
+
+<div id="outcome">
+      {% if httpheader %}
+      <p style="color:#FFFF; font-size: 30px; text-align:center; font-weight: bold ;">
+      <strong>HTTP Header :</strong></p>
+      <ul class="list-unstyled list-group">
+        {% for key,values in head.items %}
+        <li class="list-group-item " style="color:#FFFF; font-size: 20px; margin-right:10%;">
+          <span class="title" style="color:#FFFF; font-size: 20px; margin-right:10%;"> {{key}} :</br></span> {{values}}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+</div>
+
+
+<!--URL parameter-->
+
+{% if MsSQL %}
+    <div id="vulnerable" title="vulnerable">
+      <p style="color: #FFFF; font-size: 30px;"><strong>RESULT</strong> </p>
+      <p style="color:#750b09; font-size: 30px;">{{link}}{{result}}</p>
+      <p style="color:#750b09; font-size: 30px;">{{resp}}</p>
+      <p style="text-align: center; color: #FFFF; font-size: 30px;"><strong>Vulnerability Description</strong></p>
+      <div class="table-responsive">
+        <table class="table" style="color: #FFFF;">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Description</th>
+              <th>Suggested Remediation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Errors are not logged</th>
+              <td>Error logs are very valuable when trying to solve an issue, or to understand if an attempt to attack
+                your application was made.</p>
+                <p>Not keeping a log of database errors is a missed opportunity to gather information that could help
+                  you improve your application’s security before an attacker takes advantage of a vulnerability.
+              </td>
+              <td>Instead of showing database errors to the user, log them in a file which isn’t accessible to an
+                attacker via the web server.</p>
+                <p>You can log errors to PHP’s error log or to another file of your choice.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    {% endif %}
+
+    {% if MySQL %}
+    <div id="vulnerable" title="vulnerable">
+      <p style="color: #FFFF;"><strong>RESULT</strong> </p>
+      <p style="color:#750b09;">{{link}}{{result}}</p>
+      <p style="color:#750b09;">{{resp}}</p>
+      <p style="text-align: center; color: #FFFF;"><strong>Vulnerability Description</strong></p>
+      <div class="table-responsive">
+        <table class="table" style="color:#FFFF;">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Description</th>
+              <th>Suggested Remediation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Input Validation</th>
+              <td>Even though an id will always be a number, the example above is not validating user input at all.</p>
+                <p>While validating user input is not a direct solution to SQL injection, it helps us control malicious
+                  user input into the database.
+              </td>
+              <td>Before even processing the SQL query, validate user input.</p>
+                <p>In this case, we need to check that the input is a number.
+              </td>
+            </tr>
+            <tr>
+              <th>Errors are displayed to the user</th>
+              <td>Errors allow an attacker to find out information that could lead to compromise.</p>
+                <p>Information such as what database type and version is running, makes an attacker’s job easier when
+                  exploiting an SQL injection vulnerability.
+              </td>
+              <td>Do not display SQL errors to the user. If you need to show the user an error, use a generic error
+                message that does not give away sensitive information.<p>Configure proper error reporting and handling
+                  on the web server and in the code so that database error messages are never sent to the client web
+                  browser. Attackers can leverage technical details in verbose error messages to adjust their queries
+                  for successful exploitation.</li>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    {% endif %}
+
+    {% if MariaDB %}
+    <div id="vulnerable" title="vulnerable">
+      <p style="color: #FFFF; font-size: 30px;"><strong>RESULT :</strong> </p>
+      <p style="color:#750b09; font-size: 30px;font-weight:bold;">{{link}}{{result}}</p>
+      <p style="color:#750b09; font-size: 30px;font-weight:bold;">{{resp}}</p>
+      <p style="text-align: center; color:#FFFF; font-size: 30px; font-weight: bold;
+"><strong>Vulnerability Description</strong></p>
+      <div class="table-responsive">
+        <table class="table" style="color:#FFFF;">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Description</th>
+              <th>Suggested Remediation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Errors are displayed to the user</th>
+              <td>Errors allow an attacker to find out information that could lead to compromise.</p>
+                <p>Information such as what database type and version is running, makes an attacker’s job easier when
+                  exploiting an SQL injection vulnerability.
+              </td>
+              <td>Do not display SQL errors to the user. If you need to show the user an error, use a generic error
+                message that does not give away sensitive information. <p>Configure proper error reporting and handling
+                  on the web server and in the code so that database error messages are never sent to the client web
+                  browser. Attackers can leverage technical details in verbose error messages to adjust their queries
+                  for successful exploitation.</li>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </br></br></br>
+      </div>
+
+    </div>
+    {% endif %}
+
+    {% if notvulnerable %}
+    <div id="notvulnerable" title="notvulnerable">
+      <p style="color:#a3a4a8; font-weight:bold;font-size: 30px;"><strong>RESULT : </strong> </p>
+      <p style="color:#a3a4a8; font-weight:bold;font-size: 30px;">{{link}}{{result}}</p></br></br></br></br>
+    </div>
+    {% endif %}
+
+	
+{% endblock %}

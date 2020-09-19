@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block title %} Home {% endblock %}
+{% block content %}
+
+                     <!--WEb : Partie scan w clean -->
+<div class="all">
+<div class="lefter" onclick="window.location.href='xss'">
+  <div class="text"><a href="{% url 'xss' %}">Scan for XSS</a> </div>
+</div>
+
+<div class="center">
+  <div class="explainer" onclick="location.href='#Tips'" style="text-align:center;">Let's Get Started</div>
+    <div class="text" >
+    <a href="#Tips">Tips to protect your website</a></div>
+  </div>
+<div class="right" onclick="window.location.href='scanform'">
+  <div class="text"><a href="{% url 'scanform' %}">Scan for SQL Injection</a></div>
+</div>
+</div>
+
+
+
+                     <!--About -->
+
+
+<div id="desc">
+<h1>About</h1></br></br></br></br></br>
+<div class="sql">
+<div class="image1">
+<img src="{% static 'image/sql1.jpg'%}" align="right" width=500px height=250px></div>
+<div class="txt"><h2>SQL Injection</h2>
+<p>SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. This might include data belonging to other users, or any other data that the application itself is able to access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application's content or behavior.
+
+In some situations, an attacker can escalate an SQL injection attack to compromise the underlying server or other back-end infrastructure, or perform a denial-of-service attack.</br></br></br></br></p>
+</div></div>
+<div class="xss">
+  
+  <div class="txt2"><h2>XSS</h2>
+    <p>Cross-site Scripting (XSS) is a client-side code injection attack. The attacker aims to execute malicious scripts in a web browser of the victim by including malicious code in a legitimate web page or web application. The actual attack occurs when the victim visits the web page or web application that executes the malicious code. The web page or web application becomes a vehicle to deliver the malicious script to the user’s browser. Vulnerable vehicles that are commonly used for Cross-site Scripting attacks are forums, message boards, and web pages that allow comments.
+    </br>
+    A web page or web application is vulnerable to XSS if it uses unsanitized user input in the output that it generates. This user input must then be parsed by the victim’s browser. XSS attacks are possible in VBScript, ActiveX, Flash, and even CSS. However, they are most common in JavaScript, primarily because JavaScript is fundamental to most browsing experiences.</br></br></br></br></p>
+  </div>
+  <div class="image2">
+    <img src="{% static 'image/xss1.png'%}" align="left" width=500px height=350px></div>
+</div>
+
+<div class="container">
+    <h2>What you will gain from our website</h2>
+
+    <div class="box">
+		  <div class="content">
+		 	
+		 	  <h2><div class="icon">
+        		<i class="fa fa-smile-o" aria-hidden="true" ></i>
+      		  </div>Peace of mind</h2>
+		 	  <h3></h3>
+		 	  </br></br></br></br></br></br></br></br></br>
+		 	  <p>
+		 		Imagine being able to rest at complete ease knowing your site is always protected.
+		 	  </p>
+
+      </div>
+    </div> 
+    <div class="box">
+		 <div class="content">
+		 	<h2><div class="icon">
+        		<i class="fa fa-rocket" aria-hidden="true" ></i>
+      		</div>
+      		Enhance site speed</h2>
+		 	    <h3></h3>
+		 	    </br></br></br></br></br></br></br>
+		 	    <p>
+		 		  Don't let malwares slow down your site
+		 	    </p>
+
+     </div>
+    </div> 
+        <div class="box">
+		 <div class="content">
+		 	<h2>
+		 	<div class="icon">
+        		<i class="fa fa-check-square-o" aria-hidden="true" ></i>
+      		</div>No Chance of a Reputation Nightmare</h2>
+		 	<h3></h3>
+		 </br></br></br></br></br></br></br>
+		 	<p>
+		 		Keeping your visitor’s trust is important.
+
+		 	</p>
+
+         </div>
+        </div> 
+          <div class="box">
+		 <div class="content">
+
+		 	<h2><div class="icon">
+        		<i class="fa fa-refresh" aria-hidden="true" ></i>
+      		</div>Immediate alerts and updates</h2>
+		 	<h3></h3>
+		 	</br></br></br></br></br></br></br>
+		 	<p>
+		 		Always be informed about the security of your site
+		 	</p>
+
+         </div>
+        </div>  
+</div>
+
+</div>
+
+
+                    
+
+                       <!-- Tips to protect your website -->
+
+<div id="Tips">
+Tips to Protect Your Website :) 
+</div>
+
+
+<div class="container1">
+  <div class="box">
+      <div class="icon">
+        <i class="fa fa-lock" aria-hidden="true" ></i>
+      </div>
+      <div class="content">
+        
+          <h3>Change your passwords frequently</h3>
+          <p>We know it can be hassle, although updating your passwords frequently can prove extremely effective against hackers</p>
+       </div>
+  </div>
+  <div class="box">
+      <div class="icon">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </div>
+      <div class="content">
+       <h3>Update everything</h3>
+       
+       <p>Many software updates include important security vulnerability fixes</p>
+       </div>
+  </div>
+  <div class="box">
+      <div class="icon">
+        <i class="fa fa-key" aria-hidden="true"></i>
+      </div>
+      <div class="content">
+        <h3>Install a firewall</h3>
+        <p>It sits between your website server and the data connection and reads every bit of data passing through it</p>
+      </div>
+  </div>
+  <div class="box">
+      <div class="icon">
+        <i class="fa fa-user-secret" aria-hidden="true"></i>
+      </div>
+      <div class="content">
+        <h3>Make use of VPN</h3>
+        <p>VPN (Virtual Private Network) is a blessing to all of the internet users to save the data of your device through an encrypted connection. </p>
+      </div>
+  </div>
+</div>
+<div>
+
+
+                       <!-- Feedbacks -->
+
+<div class="feedback">
+<div>
+	<div class="bubble"><q style:"color:black;">I really liked your website <p> Peter</p></q></div>
+	<div class="pointer"></div>
+</div>
+
+	<div class="bubble"><q style:"color:black;">I highly recommend this website <p> Peter</p></q></div>
+	<div class="pointer"></div>
+</div>
+
+
+
+</div>
+
+
+
+
+                               <!-- Contact -->
+
+<div id="contact">
+<h1>Contact Us</h1></br></br></br>
+<h2>Let's get in touch. Send us a message</h2>
+</br></br></br>
+<p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Tunisia</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+    </br></br></br>
+</br></br></br>
+</br></br></br>
+
+<div class="foot"><p><i class="fa fa-copyright" aria-hidden="true"></i>2020 All Rights Reserved</p></div>
+</div>
+
+{% endblock %}

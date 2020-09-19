@@ -1,0 +1,11 @@
+SCAN FORM PARAMETER:
+http://www.dvwa.co.uk/
+http://testphp.vulnweb.com/artists.php?artist=1"
+http://brigady.vpraze.com/
+http://ceburealproperty.com/show_cat_page.php?id=3'
+http://brigady.vpraze.com/index.php?sekce=brigady'
+http://www.glasseo.com/newsletter/newsletter.php?id=22'
+http://brigady.vpraze.com/index.php?sekce=brigady'
+
+SCAN URL:
+http://brigady.vpraze.com/index.php?sekce=brigady'

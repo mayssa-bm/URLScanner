@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+ {% block title %} Scan {% endblock %}	
+
+{% block content %}
+
+
+
+<div class="scan">
+
+
+  <h1>XSS Scanner</h1>
+
+	</br></br>
+	</br></br>
+
+	<form action="" method="POST"> {% csrf_token %}
+      {{form}}
+      </br></br></br>
+      <button  type="submit" id="submitbutton">SCAN URL</button>
+
+    </form>
+
+</div>
+
+
+<!--http header-->
+<div id="outcome">
+      {% if httpheader %}
+      <p style="color:#FFF; font-size: 30px; text-align:center; font-weight:bold;
+"><strong>HTTP HEADER :</strong></p>
+      <ul class="list-unstyled list-group">
+        {% for key,values in head.items %}
+        <li class="list-group-item " style="color:#FFF; font-size: 20px; margin-right:10%;">
+          <span class="title" style="color:#FFF; font-size: 20px; margin-right:10%;"> {{key}} :</br></span> {{values}}
+        </li>
+        {% endfor %}
+      </ul></br></br>
+      {% endif %}
+</div>
+
+
+<!--XSS-->
+<div id="parameter">
+      {% if notvulnerable %}
+      <p style="color:#a3a4a8; font-weight:bold; font-size: 30px;"><strong>RESULT :</strong>
+      {{link}}{{getresult}}</p></br></br></br></br>
+
+      {% endif %}
+
+      {% if vulnerable %}
+      <span style="color:#FFF; font-size: 30px;"><strong>RESULT : </strong></span>
+      <span style="color: #9e0603; font-size: 30px;">{{link}}</span><span style="color:#9e0603; font-size: 30px;" >{{getresult}}</span>
+      <p style="text-align: center; color: #FFF;font-size: 30px; font-weight:bold;
+"><strong>Vulnerability Description</strong></p>
+      <div class="table-responsive">
+        <table class="table" style="color:#FFF;">
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Description</th>
+              <th>Suggested Remediation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Encoding</th>
+              <td>To reduce the risk we may encode some htmlchar</td>
+              <td>htmlspecialchars will convert any "HTML special characters" into their HTML encodings, meaning they
+                will then not be processed as standard HTML.</td>
+            </tr>
+            <tr>
+              <th>Filter Input</th>
+              <td>There is no WAF (web application firewall) Configured to block the Input form.</td>
+              <td>Sanitize any user input before it is processed and/or rendered back to the browser.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+</section>
+
+{% endblock %}

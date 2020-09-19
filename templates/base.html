@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8" />
+    {% block css %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homecss.css'%}">
+    <link href="fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menucss.css'%}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/boxcss.css'%}">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext'>
+
+    <link rel="stylesheet" href="{% static 'css/menu2.css'%}">
+
+    <link rel="stylesheet" href="{% static 'css/style1.css'%}">
+   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+    
+    {% endblock %}
+<title>    {% block title %}
+            {% endblock %}
+</title>
+
+</head>
+<body>
+
+
+{% block nav %}
+
+                      <!-- Menu--> 
+  <header id="header">
+  
+  <nav class="links" style="--items: 4;">
+    <label class="logo" onclick="window.location.href='home'">    
+      <a href= "{% url 'home'%}">URL Scanner </a>
+    </label>
+    <a href="#desc">About</a>
+    <a href="#contact">Contact Us</a>
+    <a href="{%url 'view'%}">View History</a>    
+
+</div>
+
+</header>
+
+    
+
+
+{% endblock %}
+
+{% block content %}
+        <!-- Content is here -->
+{% endblock %}
+
+
+
+{% block javascript %}
+
+    <script  src="{% static 'js/index.js'%}"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+{% endblock %}
+
+</body>
+</html>
